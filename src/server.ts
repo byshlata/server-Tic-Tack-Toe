@@ -2,11 +2,11 @@ import "reflect-metadata";
 import * as http from "http";
 import { socketServer } from "./socket";
 import { app } from './app'
-import { normalizePort } from "./utils/normalizePort";
+
 
 const debug = require("debug")("server:server");
 
-const port = normalizePort(process.env.PORT || 5000);
+const port = process.env.PORT || 5000
 app.set("port", port);
 
 const server = http.createServer(app);
@@ -16,6 +16,7 @@ server.on("error", onError);
 server.on("listening", onListening);
 
 const io = socketServer(server);
+
 
 function onError (error) {
     if (error.syscall !== "listen") {
